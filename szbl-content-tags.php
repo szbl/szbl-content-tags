@@ -27,8 +27,7 @@ class Szbl_Content_Tags
 	
 	public function __construct()
 	{
-		// priorty AFTER 1983 so we're grabbing ALL post types.
-		add_action( 'init', array( $this, 'register' ), 9999 );
+		add_action( 'init', array( $this, 'register' ), 1999 );
 	}
 	
 	public function get_labels()
