@@ -1,9 +1,11 @@
 <?php
 /*
-Plugin Name: Content Tags
+Plugin Name: Sizeable Content Tags
 Description: Easily tag any content on your WordPress website for later use.
 Author: Sizeable Interactive
-Author URI: http://sizeableinteractive.com/labs/
+Author URI: http://sizeablelabs.com
+Version: 1.0
+License: GPLv2 or later
 */
 
 class Szbl_Content_Tags
