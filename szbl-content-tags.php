@@ -47,7 +47,7 @@ class Szbl_Content_Tags
 			'new_item_name' => __( 'New Content Tag Name' ),
 			'menu_name' => __( 'Content Tags' )
 		);
-		return apply_filters( 'szbl_content_tags-setting-labels', $labels );
+		return apply_filters( 'szbl_content_tags-setting_labels', $labels );
 	}
 	
 	public function get_taxonomy_slug()
@@ -61,19 +61,26 @@ class Szbl_Content_Tags
 		$post_types = apply_filters( 'szbl_content_tags-setting-post_types', $post_types );
 		$this->post_types = $post_types;
 		
-		register_taxonomy( $this->get_taxonomy_slug(), $post_types, array(
+		$args = array(
 			'labels' => $this->get_labels(),
-			'public' => apply_filters( 'szbl_content_tags-setting-public', true ),
-			'show_ui' => apply_filters( 'szbl_content_tags-setting-hierarchical', true ),
-			'show_in_nav_menus' => apply_filters( 'szbl_content_tags-setting-show_in_nav_menus', false ),
-			'show_tagcloud' => apply_filters( 'szbl_content_tags-setting-show_tagcloud', false ),
-			'show_admin_column' => apply_filters( 'szbl_content_tags-setting-show_admin_column', true ),
-			'hierarchical' => apply_filters( 'szbl_content_tags-setting-hierarchical', false ),
-			'query_var' => apply_filters( 'szbl_content_tags-setting-query_var', true ),
-			'rewrite' => apply_filters( 'szbl_content_tags-setting-rewrite', array( 'slug' => 'content-tags', 'with_front' => false, 'hierarchical' => true ) ),
-			'capabilities' => apply_filters( 'szbl_content_tags-setting-capabilities', array() ),
-			'sort' => apply_filters( 'szbl_content_tags-setting-sort', null ),
-		));
+			'public' => true,
+			'show_ui' => true,
+			'show_in_nav_menus' => false,
+			'show_tagcloud' => false,
+			'show_admin_column' => true,
+			'hierarchical' => false,
+			'query_var' => true,
+			'rewrite' => array(
+				'slug' => 'content-tags',
+				'with_front' => false,
+				'hierarchical' => true )
+			);
+
+		register_taxonomy(
+			$this->get_taxonomy_slug(),
+			$post_types, 
+			apply_filters( 'szbl_content_tags-settings', $args )
+		);
 	}
 	
 }
