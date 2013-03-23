@@ -73,8 +73,9 @@ class Szbl_Content_Tags
 			'rewrite' => array(
 				'slug' => 'content-tags',
 				'with_front' => false,
-				'hierarchical' => true )
-			);
+				'hierarchical' => true
+			)
+		);
 
 		register_taxonomy(
 			$this->get_taxonomy_slug(),
