@@ -155,16 +155,71 @@ $blocks = szbl_get_content_blocks( array( 'szbl_content_tags' => 'example,github
 ?>
 ```
 
-### Pulling a custom post type that has specific tag(s)
-
-Coming soon.
-
 #### Why would I use this?
 
 Pulling content (e.g. Content Blocks to populate feature/callout boxes on a home page of a theme) that is featured or specifically relevant to one page/section of a website.
 
-### Applying Content Tags to very specific post types
+### Enabling Content Tags to very specific post types
 
-Coming soon.
+This sample alters the default behavior of the Content Tags plugin to only work with `posts` and a custom post type with the slug `my-custom-post-type`:
+
+```php
+<?php
+add_filter( 'szbl_content_tags-setting-post_types', 'myplugin_alter_content_tags_post_types' );
+function myplugin_alter_content_tags_post_types( $post_types )
+{
+	return array( 'posts', 'my-custom-post-type' );
+}
+?>
+```
+
+**Note:** You can place this into a separate plugin or into your theme's `functions.php` file.
 
 #### Why would I use this?
+
+You may only want specific post types to use Content Tags. If you're only using them to relate two post types, 
+you can eliminate any confusion and UI redundancy that may confuse users by limiting their support to the
+post types that need them and turn Content Tags off for post types that do not require tagging.
+
+### Turn Content Tags into Content Categories (hierarchical relationships)
+
+This sample alters the default behavior of the Content Tags plugin to function more like categories, where you can have parent/child relatinoships:
+
+```php
+<?php
+add_filter( 'szbl_content_tags-settings', 'myplugin_content_tags_to_cats' );
+function myplugin_content_tags_to_cats( $args )
+{
+	$args['hierarchical'] = true;
+	return $args;
+}
+?>
+```
+
+**Note:** You can place this into a separate plugin or into your theme's `functions.php` file.
+
+#### Why would I use this?
+
+You may only want to have parent/child relationships, or perhaps you just prefer to have a single-level
+taxonomy that has the WordPress category UI versus tag UI. For whatever reason, here's how you can change that.
+
+### Hide Content Tags Column From Post Listing(s)
+
+This sample alters the default behavior of the Content Tags to _not_ display Content Tags when viewing editable posts/pages/custom post types:
+
+```php
+<?php
+add_filter( 'szbl_content_tags-settings', 'myplugin_content_tags_to_cats' );
+function myplugin_content_tags_to_cats( $args )
+{
+	$args['show_admin_column'] = false;
+	return $args;
+}
+?>
+```
+
+**Note:** You can place this into a separate plugin or into your theme's `functions.php` file.
+
+#### Why would I use this?
+
+You may not want to see the column in the admin edit listing screens.
