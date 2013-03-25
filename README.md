@@ -183,7 +183,7 @@ post types that need them and turn Content Tags off for post types that do not r
 
 ### Turn Content Tags into Content Categories (hierarchical relationships)
 
-This sample alters the default behavior of the Content Tags plugin to function more like categories, where you can have parent/child relatinoships:
+This sample alters the default behavior of the Content Tags plugin to function more like categories, where you can have parent/child relationships:
 
 ```php
 <?php
