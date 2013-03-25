@@ -52,7 +52,7 @@ class Szbl_Content_Tags
 	
 	public function get_taxonomy_slug()
 	{
-		return apply_filters( 'szbl_content_tags-slug', self::TAXONOMY_SLUG );
+		return self::TAXONOMY_SLUG;
 	}
 	
 	public function register()
@@ -73,7 +73,7 @@ class Szbl_Content_Tags
 			'rewrite' => array(
 				'slug' => 'content-tags',
 				'with_front' => false,
-				'hierarchical' => true
+				'hierarchical' => false
 			)
 		);
 

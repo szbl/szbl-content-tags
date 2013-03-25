@@ -23,12 +23,12 @@ You can extend Content Tags by hooking into multiple filters.
 
 ### Filter Listing
 
-*szbl_content_tags-setting-post_types*
+**szbl_content_tags-setting-post_types**  
 An array of the post types (slugs) that should receive support for Content Tag. Default: all post types except for `revision`, `attachment` and `nav_menu`.
 
 _Labels could also be filtered with `szbl_content_tags-settings`._
 
-*szbl_content_tags-settings*
+**szbl_content_tags-settings**  
 The `$args` array for the `register_taxonomy()` call during the WordPress `init` hook. Allows customization of the taxonomy properties, including privacy settings, UI settings, hierachies, etc.
 
 Default:
@@ -53,7 +53,7 @@ $args = array(
 ?>
 ```
 
-*szbl_content_tags-setting_labels*
+**szbl_content_tags-setting_labels**  
 The labels array sent to the `register_taxonomy()`. Default:
 
 ```php
@@ -71,6 +71,7 @@ $labels = array(
 	'new_item_name' => __( 'New Content Tag Name' ),
 	'menu_name' => __( 'Content Tags' )
 );
+?>
 ```
 
 Code Samples
