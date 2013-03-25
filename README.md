@@ -120,32 +120,40 @@ Here we'll use Content Blocks as an example (post type slug is `szbl-content-blo
 
 ```php
 <?php
-	/*
-		Here we get a bit more complex, using the powerful
-		tax_query argument:
-	*/
-	$blocks = get_posts(array(
-		'post_type' => 'szbl-content-block',
-		'orderby' => 'menu_order',
-		'order' => 'asc',	
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'szbl-content-tag',
-				'field' => 'slug',
-				'operator' => 'AND',
-				'terms' => array( 'featured', 'home-page' )
-			)
+/*
+	Here we get a bit more complex, using the powerful
+	tax_query argument:
+*/
+$blocks = get_posts(array(
+	'post_type' => 'szbl-content-block',
+	'orderby' => 'menu_order',
+	'order' => 'asc',	
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'szbl-content-tag',
+			'field' => 'slug',
+			'operator' => 'AND',
+			'terms' => array( 'featured', 'home-page' )
 		)
-	));
-	
-	if ( count( $blocks ) > 0 ) 
-	{
-		// do something awesome here.
-	}
+	)
+));
+
+if ( count( $blocks ) > 0 ) 
+{
+	// do something awesome here.
+}
 ?>
 ```
 
 **Note:** the usage of the `operator` parameter with a value of `AND` ensures we're only pulling Content Blocks tagged `featured` and `home-page`.
+
+If you are using Content Blocks, we've provided some sweet wrapper functions, the above `get_posts()` call can be accomplished with the following code:
+
+```php
+<?php
+$blocks = szbl_get_content_blocks( array( 'szbl_content_tags' => 'example,github' ) );
+?>
+```
 
 ### Pulling a custom post type that has specific tag(s)
 
